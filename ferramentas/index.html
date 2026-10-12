@@ -50,18 +50,14 @@
   .sidebar::-webkit-scrollbar { width:6px; }
   .sidebar::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
 
-  .brand { padding:22px 20px 16px; border-bottom:1px solid var(--border); }
-  .brand-mark { font-family:var(--display); font-stretch:80%; font-weight:800; font-size:26px; letter-spacing:-.01em; color:var(--text); line-height:1; }
-  .brand-sub { display:flex; align-items:center; gap:7px; margin-top:5px; font-family:var(--mono); font-size:9.5px; font-weight:500; letter-spacing:2px; color:var(--muted); text-transform:uppercase; }
-  .brand-sub::before, .brand-sub::after { content:""; height:1px; flex:0 0 14px; background:var(--border); }
-  .brand-tag { font-size:9.5px; color:var(--dim); margin-top:10px; letter-spacing:.8px; font-weight:700; text-transform:uppercase; }
-
-  .sample-badge {
-    margin:14px 18px 4px; padding:9px 11px; border-radius:var(--r-sm);
-    background:color-mix(in srgb, var(--acc2) 10%, transparent); border:1px solid color-mix(in srgb, var(--acc2) 32%, transparent);
-    font-size:10.5px; line-height:1.5; color:var(--acc2);
-  }
-  .sample-badge b { color:var(--text); }
+  .brand { padding:22px 20px 18px; border-bottom:1px solid var(--border); display:grid; gap:12px; }
+  .brand-mark { display:flex; align-items:baseline; gap:6px; font-family:var(--display); font-stretch:80%; font-size:24px; line-height:1; letter-spacing:-.01em; }
+  .brand-mark b { font-weight:800; color:var(--text); }
+  .brand-mark span { font-weight:500; color:var(--muted); }
+  .brand-tag { font-family:var(--mono); font-size:10.5px; letter-spacing:.04em; color:var(--dim); margin-top:-6px; }
+  .sample-note { display:grid; gap:3px; font-size:11.5px; line-height:1.45; color:var(--muted); }
+  .sample-note strong { display:flex; align-items:center; gap:7px; font-family:var(--mono); font-size:10px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--text); }
+  .sample-note strong::before { content:""; width:6px; height:6px; border-radius:50%; background:var(--yellow); box-shadow:0 0 0 3px color-mix(in srgb, var(--yellow) 18%, transparent); }
 
   nav.navlist { flex:1; padding:10px 10px 16px; overflow-y:auto; }
   .nav-h { font-family:var(--mono); font-size:10px; letter-spacing:1.4px; color:var(--dim); text-transform:uppercase; font-weight:500; padding:14px 10px 6px; }
@@ -304,11 +300,10 @@
 <div class="shell">
   <aside class="sidebar" id="sidebar">
     <div class="brand">
-      <div class="brand-mark">AdOps</div>
-      <div class="brand-sub">Suite</div>
-      <div class="brand-tag">Painel de Tráfego Pago</div>
+      <div class="brand-mark"><b>AdOps</b><span>Suite</span></div>
+      <div class="brand-tag">Tráfego pago · e-commerce</div>
+      <div class="sample-note"><strong>Dados fictícios</strong>Estrutura e comportamento reais das ferramentas; números de exemplo.</div>
     </div>
-    <div class="sample-badge"><b>Modo amostra</b> — todo dado nesta página é fictício. As telas replicam a estrutura e o comportamento real das ferramentas.</div>
     <nav class="navlist" id="navlist">
       <div class="nav-h">Painéis</div>
       <a class="nav-link" data-route="mobile">Dashboard Mobile</a>
