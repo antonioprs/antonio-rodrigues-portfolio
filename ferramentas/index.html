@@ -8,26 +8,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
   :root {
-    /* Escuro (padrão): ardósia fria; azul como acento; verde/vermelho só para semântica de resultado. */
-    --bg:#11151a; --s1:#161b21; --s2:#1c232b; --s3:#232b34; --border:#2c3640; --border-soft:#252e37;
-    --muted:#97a3b0; --dim:#66727e; --text:#e8edf2;
-    --green:#45b883; --acc:#7ea3ff; --acc2:#5cb8c4;
+    /* Escuro (padrão): preto de luxo, texto marfim, dourado champanhe como acento;
+       verde/vermelho só para semântica de resultado. */
+    --bg:#070707; --s1:#0f0f0e; --s2:#161614; --s3:#1e1d1a; --border:#2a2824; --border-soft:#1f1e1b;
+    --muted:#a39d91; --dim:#6e695f; --text:#f3eee4;
+    --green:#5fbf8f; --acc:#d4b27a; --acc2:#b89b6a;
     --red:#ef6461; --orange:#f08d4f; --yellow:#e2b043;
     --display:'Archivo','Arial Narrow',system-ui,sans-serif;
     --body:'Public Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
     --mono:'JetBrains Mono','SF Mono','Consolas',monospace;
-    --on-acc:#0b1322; --r-sm:6px; --r-md:8px; --r-lg:10px;
+    --on-acc:#14100a; --r-sm:6px; --r-md:8px; --r-lg:10px;
   }
   :root[data-theme="light"] {
-    --bg:#f4f6f8; --s1:#ffffff; --s2:#edf0f3; --s3:#e4e8ed; --border:#d4dbe2; --border-soft:#e0e5ea;
-    --muted:#55616d; --dim:#87929d; --text:#131920;
-    --green:#1d8a5a; --acc:#2453c4; --acc2:#16808c; --red:#c93a37; --orange:#c2611f; --yellow:#9a6b00; --on-acc:#ffffff;
+    --bg:#f7f4ee; --s1:#fffdf9; --s2:#efe9df; --s3:#e6ded1; --border:#dcd2c2; --border-soft:#e8e0d3;
+    --muted:#6b6457; --dim:#9a9283; --text:#17140f;
+    --green:#2f7d55; --acc:#8a6a2f; --acc2:#7a6338; --red:#c93a37; --orange:#c2611f; --yellow:#9a6b00; --on-acc:#ffffff;
   }
   @media (prefers-color-scheme: light) {
     :root:not([data-theme="dark"]) {
-      --bg:#f4f6f8; --s1:#ffffff; --s2:#edf0f3; --s3:#e4e8ed; --border:#d4dbe2; --border-soft:#e0e5ea;
-      --muted:#55616d; --dim:#87929d; --text:#131920;
-      --green:#1d8a5a; --acc:#2453c4; --acc2:#16808c; --red:#c93a37; --orange:#c2611f; --yellow:#9a6b00; --on-acc:#ffffff;
+      --bg:#f7f4ee; --s1:#fffdf9; --s2:#efe9df; --s3:#e6ded1; --border:#dcd2c2; --border-soft:#e8e0d3;
+      --muted:#6b6457; --dim:#9a9283; --text:#17140f;
+      --green:#2f7d55; --acc:#8a6a2f; --acc2:#7a6338; --red:#c93a37; --orange:#c2611f; --yellow:#9a6b00; --on-acc:#ffffff;
     }
   }
   * { box-sizing:border-box; }
@@ -243,6 +244,9 @@
   @keyframes brilho { from { background-position:200% 0; } to { background-position:-200% 0; } }
   @keyframes sublinhar { from { transform:scaleX(0); } to { transform:scaleX(1); } }
 
+  .main { background:radial-gradient(900px 420px at 88% -8%, color-mix(in srgb, var(--acc) 10%, transparent), transparent 65%); }
+  .topbar { background:color-mix(in srgb, var(--bg) 82%, transparent); }
+  .home-intro h2 { background:linear-gradient(90deg, var(--text) 55%, var(--acc)); -webkit-background-clip:text; background-clip:text; color:transparent; }
   .live { position:relative; overflow:hidden; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1px; background:var(--border);
           border:1px solid var(--border); border-radius:var(--r-lg); margin:0 0 30px; animation:subir .5s ease-out both; }
   @media (max-width:860px) { .live { grid-template-columns:repeat(2,minmax(0,1fr)); } }
@@ -292,38 +296,38 @@
   /* ---------------- Dashboard Mobile (phone frame) ---------------- */
   .phone-wrap { display:flex; justify-content:center; }
   .phone-frame {
-    width:100%; max-width:400px; background:#0f1318; border:1px solid #000; border-radius:34px;
+    width:100%; max-width:400px; background:#0b0b0a; border:1px solid color-mix(in srgb, var(--acc) 35%, #000); border-radius:34px;
     padding:12px; box-shadow:0 30px 70px rgba(0,0,0,.4), 0 0 0 1px rgba(255,255,255,.04) inset;
   }
   .phone-notch { width:90px; height:18px; background:#000; border-radius:0 0 14px 14px; margin:0 auto 6px; }
   .phone-screen {
-    background:#0f1318; border-radius:24px; overflow-y:auto; max-height:78vh;
+    background:#0b0b0a; border-radius:24px; overflow-y:auto; max-height:78vh;
     padding:16px 14px 26px; font-size:13px;
   }
   .phone-screen::-webkit-scrollbar { width:4px; }
   .phone-screen::-webkit-scrollbar-thumb { background:#333; border-radius:2px; }
   .mob-daytabs { display:flex; gap:6px; margin-bottom:14px; }
-  .mob-daytabs button { flex:1; border:1px solid #2c3640; background:#18202a; color:#8d99a6; font-size:11.5px; font-weight:700; padding:8px 0; border-radius:9px; cursor:pointer; }
+  .mob-daytabs button { flex:1; border:1px solid #2a2824; background:#141412; color:#a39d91; font-size:11.5px; font-weight:700; padding:8px 0; border-radius:9px; cursor:pointer; }
   .mob-daytabs button.on { background:var(--acc); color:var(--on-acc); border-color:var(--acc); }
-  .mob-hero-lbl { font-size:10px; letter-spacing:1px; text-transform:uppercase; color:#8d99a6; font-weight:700; }
+  .mob-hero-lbl { font-size:10px; letter-spacing:1px; text-transform:uppercase; color:#a39d91; font-weight:700; }
   .mob-hero-val { font-family:var(--display); font-stretch:88%; font-size:32px; font-weight:700; color:#fff; font-variant-numeric:tabular-nums; margin-top:4px; font-feature-settings:'tnum'; letter-spacing:-.5px; }
   .mob-delta { font-size:11.5px; font-weight:700; margin-top:5px; font-feature-settings:'tnum'; }
   .mob-delta.up { color:var(--green); } .mob-delta.down { color:var(--red); }
   .mob-kpis { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:14px 0; }
-  .mob-kpi { background:#18202a; border:1px solid #26303b; border-radius:11px; padding:10px 12px; }
+  .mob-kpi { background:#141412; border:1px solid #26241f; border-radius:11px; padding:10px 12px; }
   .mob-kpi.orange { border-color:rgba(255,140,66,.3); } .mob-kpi.blue { border-color:color-mix(in srgb, var(--acc2) 30%, transparent); }
   .mob-kpi.green { border-color:color-mix(in srgb, var(--green) 30%, transparent); } .mob-kpi.yellow { border-color:rgba(240,180,41,.3); }
-  .mob-kpi .lbl { font-size:9.5px; color:#8d99a6; text-transform:uppercase; letter-spacing:.4px; font-weight:700; }
+  .mob-kpi .lbl { font-size:9.5px; color:#a39d91; text-transform:uppercase; letter-spacing:.4px; font-weight:700; }
   .mob-kpi .val { font-size:16px; font-weight:800; color:#fff; margin-top:4px; font-feature-settings:'tnum'; }
-  .mob-acc { background:#18202a; border:1px solid #26303b; border-radius:13px; margin-bottom:10px; overflow:hidden; }
+  .mob-acc { background:#141412; border:1px solid #26241f; border-radius:13px; margin-bottom:10px; overflow:hidden; }
   .mob-acc-head { padding:13px 14px; display:flex; align-items:center; justify-content:space-between; cursor:pointer; gap:10px; }
   .mob-acc-title { font-size:13px; font-weight:700; color:#fff; display:flex; align-items:center; gap:8px; }
-  .mob-acc-sub { font-size:10.5px; color:#8d99a6; margin-top:2px; }
-  .mob-acc-chev { color:#8d99a6; transition:transform .15s; font-size:11px; }
+  .mob-acc-sub { font-size:10.5px; color:#a39d91; margin-top:2px; }
+  .mob-acc-chev { color:#a39d91; transition:transform .15s; font-size:11px; }
   .mob-acc.open .mob-acc-chev { transform:rotate(180deg); }
   .mob-acc-body { display:none; padding:0 14px 14px; }
   .mob-acc.open .mob-acc-body { display:block; }
-  .mob-row { display:flex; justify-content:space-between; align-items:center; padding:7px 0; border-bottom:1px solid #222b35; font-size:12px; }
+  .mob-row { display:flex; justify-content:space-between; align-items:center; padding:7px 0; border-bottom:1px solid #1f1d1a; font-size:12px; }
   .mob-row:last-child { border-bottom:0; }
   .mob-pill { font-size:9.5px; font-weight:800; padding:2px 7px; border-radius:5px; }
   .mob-cat-dot { width:6px; height:6px; border-radius:50%; display:inline-block; margin-right:5px; flex-shrink:0; }
@@ -957,12 +961,12 @@ function viewMobile() {
   const dCls = (v, inv=false) => (v>=0)!==inv ? 'up' : 'down';
 
   const metaBody = `
-    <div class="mob-row"><span style="color:#8d99a6">Gasto</span><span style="color:#fff;font-weight:700">${fmtBRL0(d.meta.spend)}</span></div>
-    <div class="mob-row"><span style="color:#8d99a6">ROAS</span><span style="color:var(--green);font-weight:700">${d.meta.roas.toFixed(2).replace('.',',')}x</span></div>
-    <div class="mob-row"><span style="color:#8d99a6">Compras</span><span style="color:#fff">${d.meta.purchases}</span></div>
-    <div class="mob-row"><span style="color:#8d99a6">CPM</span><span style="color:#fff">${fmtBRL(d.meta.cpm)}</span></div>
-    <div class="mob-row"><span style="color:#8d99a6">CPC</span><span style="color:#fff">${fmtBRL(d.meta.cpc)}</span></div>
-    <div class="mob-row"><span style="color:#8d99a6">CTR</span><span style="color:#fff">${d.meta.ctr.toFixed(2).replace('.',',')}%</span></div>
+    <div class="mob-row"><span style="color:#a39d91">Gasto</span><span style="color:#fff;font-weight:700">${fmtBRL0(d.meta.spend)}</span></div>
+    <div class="mob-row"><span style="color:#a39d91">ROAS</span><span style="color:var(--green);font-weight:700">${d.meta.roas.toFixed(2).replace('.',',')}x</span></div>
+    <div class="mob-row"><span style="color:#a39d91">Compras</span><span style="color:#fff">${d.meta.purchases}</span></div>
+    <div class="mob-row"><span style="color:#a39d91">CPM</span><span style="color:#fff">${fmtBRL(d.meta.cpm)}</span></div>
+    <div class="mob-row"><span style="color:#a39d91">CPC</span><span style="color:#fff">${fmtBRL(d.meta.cpc)}</span></div>
+    <div class="mob-row"><span style="color:#a39d91">CTR</span><span style="color:#fff">${d.meta.ctr.toFixed(2).replace('.',',')}%</span></div>
   `;
 
   const googleCamps = d.campaigns.map(c => `
@@ -974,43 +978,43 @@ function viewMobile() {
       <div style="display:flex;gap:9px;flex-shrink:0;font-size:10.5px;font-feature-settings:'tnum'">
         <span style="color:${c.pacer>=90?'var(--green)':c.pacer>=50?'#f0b429':'var(--red)'};font-weight:700">${c.pacer}%</span>
         <span style="color:#fff;font-weight:700">${c.roas.toFixed(2).replace('.',',')}x</span>
-        <span style="color:#8d99a6">${fmtBRL0(c.custo)}</span>
+        <span style="color:#a39d91">${fmtBRL0(c.custo)}</span>
       </div>
     </div>
   `).join('');
   const googleBody = `
-    <div class="mob-row"><span style="color:#8d99a6">Gasto</span><span style="color:#fff;font-weight:700">${fmtBRL0(d.google.spend)}</span></div>
-    <div class="mob-row"><span style="color:#8d99a6">CPM</span><span style="color:#fff">${fmtBRL(d.google.cpm)}</span></div>
-    <div class="mob-row"><span style="color:#8d99a6">CPC</span><span style="color:#fff">${fmtBRL(d.google.cpc)}</span></div>
-    <div style="font-size:9px;color:#8d99a6;text-transform:uppercase;letter-spacing:.5px;font-weight:700;margin:10px 0 4px">Campanhas · pacer · roas · custo</div>
+    <div class="mob-row"><span style="color:#a39d91">Gasto</span><span style="color:#fff;font-weight:700">${fmtBRL0(d.google.spend)}</span></div>
+    <div class="mob-row"><span style="color:#a39d91">CPM</span><span style="color:#fff">${fmtBRL(d.google.cpm)}</span></div>
+    <div class="mob-row"><span style="color:#a39d91">CPC</span><span style="color:#fff">${fmtBRL(d.google.cpc)}</span></div>
+    <div style="font-size:9px;color:#a39d91;text-transform:uppercase;letter-spacing:.5px;font-weight:700;margin:10px 0 4px">Campanhas · pacer · roas · custo</div>
     ${googleCamps}
   `;
 
   const aq = d.aquisicao;
   const aqRoasColor = aq.roas>=3?'var(--green)':aq.roas>=1.5?'#f0b429':'var(--red)';
   const aquisicaoBody = `
-    <div class="mob-row"><span style="color:#8d99a6">Orç/dia total</span><span style="color:#fff;font-weight:700">${fmtBRL0(aq.orc_total)}</span></div>
-    <div class="mob-row"><span style="color:#8d99a6">Gasto (janela)</span><span style="color:#fff;font-weight:700">${fmtBRL0(aq.gasto)}</span></div>
-    <div class="mob-row"><span style="color:#8d99a6">ROAS</span><span style="color:${aqRoasColor};font-weight:700">${aq.roas>0?aq.roas.toFixed(2).replace('.',',')+'x':'—'}</span></div>
-    <div class="mob-row"><span style="color:#8d99a6">Conjuntos ativos</span><span style="color:#fff">${aq.conjuntos} em ${aq.campanhas} campanhas</span></div>
+    <div class="mob-row"><span style="color:#a39d91">Orç/dia total</span><span style="color:#fff;font-weight:700">${fmtBRL0(aq.orc_total)}</span></div>
+    <div class="mob-row"><span style="color:#a39d91">Gasto (janela)</span><span style="color:#fff;font-weight:700">${fmtBRL0(aq.gasto)}</span></div>
+    <div class="mob-row"><span style="color:#a39d91">ROAS</span><span style="color:${aqRoasColor};font-weight:700">${aq.roas>0?aq.roas.toFixed(2).replace('.',',')+'x':'—'}</span></div>
+    <div class="mob-row"><span style="color:#a39d91">Conjuntos ativos</span><span style="color:#fff">${aq.conjuntos} em ${aq.campanhas} campanhas</span></div>
   `;
 
   const ni = d.nacimp;
   const niMax = Math.max(ni.nac_roas, ni.imp_roas);
   const nacimpBody = `
     <div style="margin-bottom:12px">
-      <div class="mob-row" style="border-bottom:0;padding-bottom:3px"><span style="color:#8d99a6">Nacionais</span><span style="color:var(--green);font-weight:700">${ni.nac_roas.toFixed(2).replace('.',',')}x</span></div>
+      <div class="mob-row" style="border-bottom:0;padding-bottom:3px"><span style="color:#a39d91">Nacionais</span><span style="color:var(--green);font-weight:700">${ni.nac_roas.toFixed(2).replace('.',',')}x</span></div>
       ${bar(ni.nac_roas, niMax, 'var(--green)')}
     </div>
     <div>
-      <div class="mob-row" style="border-bottom:0;padding-bottom:3px"><span style="color:#8d99a6">Importados</span><span style="color:#f0b429;font-weight:700">${ni.imp_roas.toFixed(2).replace('.',',')}x</span></div>
+      <div class="mob-row" style="border-bottom:0;padding-bottom:3px"><span style="color:#a39d91">Importados</span><span style="color:#f0b429;font-weight:700">${ni.imp_roas.toFixed(2).replace('.',',')}x</span></div>
       ${bar(ni.imp_roas, niMax, '#f0b429')}
     </div>
     <div style="font-size:9.5px;color:#666;margin-top:10px">ROAS direcional: receita total da categoria ÷ custo de mídia atribuído.</div>
   `;
 
   const fornBody = d.fornecedores.map((f,i) => `
-    <div class="mob-row"><span style="color:#fff">${i+1}. ${esc(f.nome)}</span><span style="color:#8d99a6">${fmtBRL0(f.receita)}</span></div>
+    <div class="mob-row"><span style="color:#fff">${i+1}. ${esc(f.nome)}</span><span style="color:#a39d91">${fmtBRL0(f.receita)}</span></div>
   `).join('');
 
   return `
