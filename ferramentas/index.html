@@ -287,7 +287,6 @@
       <a class="nav-link" data-route="insights">Insights IA</a>
       <a class="nav-link" data-route="operacional">Operacional</a>
       <div class="nav-h">Ferramentas</div>
-      <a class="nav-link" data-route="dpa">Monitor DPA</a>
       <a class="nav-link" data-route="promo">Monitor Promoções</a>
       <a class="nav-link" data-route="brief">Daily Brief</a>
       <a class="nav-link" data-route="utm">UTM Builder</a>
@@ -580,7 +579,6 @@ const ROUTES = {
   tracking: { title:'Tracking', sub:'Qualidade da atribuição · cascata UTM > gclid > fbclid > GA4 > landing', render: viewTracking, init: null },
   insights: { title:'Insights IA', sub:'Brief diário do Gemini + ações sugeridas pelos agentes', render: viewInsights, init: initInsights },
   operacional: { title:'Operacional', sub:'Saúde dos pipelines · Apps Scripts, Sheets, n8n', render: viewOperacional, init: initOperacional },
-  dpa: { title:'Monitor DPA', sub:'Anúncios de catálogo ativos · product set configurado', render: viewDpa, init: null },
   promo: { title:'Monitor Promoções', sub:'Criativos ativos com "Promoções" (cupom) ativado no Meta Ads', render: viewPromo, init: null },
   brief: { title:'Daily Brief', sub:'Versão web do brief diário enviado por link todas as manhãs', render: viewBrief, init: null },
   utm: { title:'UTM Builder', sub:'Gerador de URLs com nomenclatura padrão de UTM', render: viewUtm, init: initUtm },
@@ -626,7 +624,6 @@ function viewHome() {
       { r:'operacional', t:'Operacional', d:'Saúde dos pipelines, Sheets e n8n.' },
     ]},
     { nome:'Ferramentas', itens:[
-      { r:'dpa', t:'Monitor DPA', d:'Audita anúncios de catálogo sem product set.' },
       { r:'promo', t:'Monitor Promoções', d:'Detecta criativos com cupom ativado.' },
       { r:'brief', t:'Daily Brief', d:'Versão web do resumo diário por e-mail.' },
       { r:'utm', t:'UTM Builder', d:'Gera URLs com UTM no padrão da conta.', real:true },
@@ -1163,28 +1160,6 @@ function initOperacional() {
     opFilter = b.dataset.opf;
     document.getElementById('view').innerHTML = viewOperacional();
   });
-}
-
-/* ---------------- MONITOR DPA ---------------- */
-function viewDpa() {
-  const d = MOCK.dpa;
-  const alerts = d.ads.filter(a=>a.alert), ok = d.ads.filter(a=>!a.alert);
-  const row = a => `<tr><td><div style="font-weight:600">${esc(a.ad_name)}</div><div style="font-size:11px;color:var(--muted)">${esc(a.adset_name)}</div><div style="font-size:11px;color:var(--dim)">${esc(a.campaign_name)}</div></td><td>${a.alert ? `<span class="pill pill-bad">${esc(a.product_set_name)}</span>` : `<span class="pill pill-ok">✓ ${esc(a.product_set_name)}</span>`}</td></tr>`;
-  return `
-    <div class="grid grid-4">
-      <div class="card kpi" style="text-align:center"><div class="kpi-val" style="font-size:22px;color:var(--muted)">${d.total_active_ads}</div><div class="kpi-sub">ads ativos verificados</div></div>
-      <div class="card kpi" style="text-align:center"><div class="kpi-val" style="font-size:22px">${d.ads.length}</div><div class="kpi-sub">ads de catálogo/DPA</div></div>
-      <div class="card kpi" style="text-align:center;${alerts.length?'border-color:rgba(245,82,78,.4)':''}"><div class="kpi-val" style="font-size:22px;color:${alerts.length?'var(--red)':'var(--green)'}">${alerts.length}</div><div class="kpi-sub">catálogo aberto</div></div>
-      <div class="card kpi" style="text-align:center"><div class="kpi-val" style="font-size:22px;color:var(--green)">${ok.length}</div><div class="kpi-sub">product set manual</div></div>
-    </div>
-    <div class="banner ${alerts.length?'banner-warn':'banner-ok'}" style="margin-top:18px">
-      ${alerts.length ? `${alerts.length} anúncio${alerts.length>1?'s':''} usando o catálogo dinâmico completo da loja — inclui produtos sem estoque. Configure um product set manual.` : `Todos os ${ok.length} anúncios com catálogo estão usando product set manual configurado.`}
-    </div>
-    ${alerts.length ? `<div class="section-title" style="color:var(--red)">Precisam de atenção (${alerts.length})</div><div class="card table-wrap" style="border-color:rgba(245,82,78,.35)"><table class="dt"><thead><tr><th>Anúncio · Adset · Campanha</th><th>Product Set</th></tr></thead><tbody>${alerts.map(row).join('')}</tbody></table></div>` : ''}
-    <div class="section-title">Configurados corretamente (${ok.length})</div>
-    <div class="card table-wrap"><table class="dt"><thead><tr><th>Anúncio · Adset · Campanha</th><th>Product Set</th></tr></thead><tbody>${ok.map(row).join('')}</tbody></table></div>
-    <div style="font-size:11px;color:var(--dim);margin-top:14px;text-align:right">amostra estática · no painel real, atualiza ao vivo via Meta Graph API</div>
-  `;
 }
 
 /* ---------------- MONITOR PROMOÇÕES ---------------- */
