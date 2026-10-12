@@ -235,6 +235,51 @@
   .wn-metrics span { display:block; font:500 9.5px/1.2 var(--mono); letter-spacing:.06em; text-transform:uppercase; color:var(--dim); }
   .wn-metrics strong { font-size:12.5px; font-weight:600; font-variant-numeric:tabular-nums; }
   .wn-empty { padding:40px 20px; text-align:center; color:var(--muted); font-size:13px; }
+
+  /* ---------------- Movimento ---------------- */
+  @keyframes subir { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+  @keyframes pulso { 0% { box-shadow:0 0 0 0 color-mix(in srgb, var(--green) 55%, transparent); } 70% { box-shadow:0 0 0 9px transparent; } 100% { box-shadow:0 0 0 0 transparent; } }
+  @keyframes desenhar { from { stroke-dashoffset:var(--len); } to { stroke-dashoffset:0; } }
+  @keyframes brilho { from { background-position:200% 0; } to { background-position:-200% 0; } }
+  @keyframes sublinhar { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+
+  .live { position:relative; overflow:hidden; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1px; background:var(--border);
+          border:1px solid var(--border); border-radius:var(--r-lg); margin:0 0 30px; animation:subir .5s ease-out both; }
+  @media (max-width:860px) { .live { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+  .live::after { content:""; position:absolute; inset:0; pointer-events:none;
+                 background:linear-gradient(100deg, transparent 30%, color-mix(in srgb, var(--acc) 10%, transparent) 50%, transparent 70%) 0 0 / 200% 100%;
+                 animation:brilho 2.4s ease-in-out .6s 1 both; }
+  .live-cell { background:var(--s1); padding:16px 18px 12px; display:grid; gap:6px; min-width:0; }
+  .live-lbl { display:flex; align-items:center; gap:8px; font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+  .live-dot { width:7px; height:7px; border-radius:50%; background:var(--green); animation:pulso 1.8s ease-out infinite; }
+  .live-val { font-family:var(--display); font-stretch:85%; font-size:clamp(24px,2.6vw,32px); font-weight:700; line-height:1; font-variant-numeric:tabular-nums; }
+  .live-sub { font-size:11.5px; color:var(--green); font-variant-numeric:tabular-nums; }
+  .live svg { width:100%; height:34px; display:block; overflow:visible; }
+  .live svg path.linha { fill:none; stroke:var(--acc); stroke-width:2; stroke-linecap:round; stroke-linejoin:round;
+                         stroke-dasharray:var(--len); animation:desenhar 1.4s ease-out .3s both; }
+  .live svg path.area { fill:color-mix(in srgb, var(--acc) 14%, transparent); stroke:none; animation:subir .8s ease-out 1.2s both; }
+
+  .home-intro h2 { position:relative; display:inline-block; padding-bottom:6px; }
+  .home-intro h2::after { content:""; position:absolute; left:0; bottom:0; width:72px; height:3px; border-radius:2px; background:var(--acc);
+                          transform-origin:left; animation:sublinhar .7s cubic-bezier(.2,.8,.2,1) .2s both; }
+  .home-intro { animation:subir .5s ease-out both; }
+  .tool-row { animation:subir .45s ease-out both; animation-delay:calc(var(--i, 0) * 45ms + 250ms); }
+  .tool-row:hover { background:color-mix(in srgb, var(--acc) 8%, transparent); }
+  .tool-row:hover .tr-name { color:var(--acc); }
+  .tr-name { transition:color .15s; }
+
+  .card.kpi, .wn-card { transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease; }
+  .card.kpi:hover, .wn-card:hover { transform:translateY(-3px); border-color:color-mix(in srgb, var(--acc) 45%, var(--border));
+                                     box-shadow:0 10px 28px -14px color-mix(in srgb, var(--acc) 60%, transparent); }
+  .wn-card { animation:subir .45s ease-out both; animation-delay:calc(var(--i, 0) * 35ms); }
+  .wn-card:hover .wn-frame { border-color:var(--acc); color:var(--acc); }
+  .wn-frame { transition:border-color .18s, color .18s; }
+  .view > * { animation:subir .35s ease-out both; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .live, .live::after, .live-dot, .live svg path, .home-intro, .home-intro h2::after, .tool-row, .wn-card, .view > * { animation:none !important; }
+    .card.kpi:hover, .wn-card:hover { transform:none; }
+  }
   .toast-wrap { position:fixed; bottom:22px; right:22px; z-index:50; display:flex; flex-direction:column; gap:8px; }
   .toast { background:var(--s2); border:1px solid var(--border); border-radius:10px; padding:11px 15px; font-size:12.5px; color:var(--text); box-shadow:0 8px 24px rgba(0,0,0,.25); animation:toastIn .18s ease-out; max-width:320px; }
   .toast.ok { border-color:color-mix(in srgb, var(--acc) 40%, transparent); }
@@ -694,7 +739,7 @@ function wnConteudo() {
       <div class="card kpi"><div class="kpi-lbl">ROAS</div><div class="kpi-val" style="color:var(--green)">${fmtX(gasto ? receita / gasto : 0)}</div></div>
     </div>
     <div class="wn-note">Números do filtro atual (${rotulo}, últimos ${WN.estado.janela} dias). Dados fictícios.</div>
-    ${lista.length ? `<div class="wn-grid">${lista.map(wnCard).join('')}</div>` : '<div class="card wn-empty">Nenhum criativo neste recorte. Mude a janela ou os filtros.</div>'}`;
+    ${lista.length ? `<div class="wn-grid">${lista.map((c, i) => wnCard(c, i).replace('<article class="wn-card">', `<article class="wn-card" style="--i:${i}">`)).join('')}</div>` : '<div class="card wn-empty">Nenhum criativo neste recorte. Mude a janela ou os filtros.</div>'}`;
 }
 
 function viewWinners() {
@@ -718,7 +763,7 @@ function viewWinners() {
 
 function initWinners() {
   const raiz = document.getElementById('view');
-  const atualizar = () => { document.getElementById('wn-conteudo').innerHTML = wnConteudo(); };
+  const atualizar = () => { const c = document.getElementById('wn-conteudo'); c.innerHTML = wnConteudo(); animarNumeros(c); };
   raiz.querySelectorAll('[data-wn]').forEach(grupo => grupo.addEventListener('click', ev => {
     const b = ev.target.closest('button'); if (!b) return;
     WN.estado[grupo.dataset.wn] = b.dataset.v;
@@ -732,6 +777,51 @@ function initWinners() {
   }));
   [['wn-produto', 'produto'], ['wn-creator', 'creator'], ['wn-storie', 'storie'], ['wn-post', 'post']].forEach(([id, campo]) =>
     document.getElementById(id).addEventListener('change', ev => { WN.estado[campo] = ev.target.value; atualizar(); }));
+}
+
+
+/* ---------------- Faixa ao vivo e contagem animada ---------------- */
+function liveStrip() {
+  // Série fictícia de receita por hora (só para desenhar a linha).
+  const serie = [12, 14, 13, 17, 21, 19, 24, 28, 26, 31, 35, 33, 38, 44, 41, 47, 52, 50, 57];
+  const w = 240, h = 34, max = Math.max(...serie), min = Math.min(...serie);
+  const pts = serie.map((v, i) => [i * (w / (serie.length - 1)), h - ((v - min) / (max - min)) * (h - 4) - 2]);
+  const d = pts.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' ');
+  const area = d + ` L ${w} ${h} L 0 ${h} Z`;
+  return `
+    <div class="live" aria-label="Indicadores de exemplo">
+      <div class="live-cell">
+        <span class="live-lbl"><span class="live-dot"></span>Receita hoje · demo</span>
+        <span class="live-val" data-conta>R$ 187.430</span>
+        <svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true"><path class="area" d="${area}"/><path class="linha" d="${d}" style="--len:420"/></svg>
+      </div>
+      <div class="live-cell"><span class="live-lbl">ROAS do dia</span><span class="live-val" data-conta>4,08x</span><span class="live-sub">▲ 6,2% vs ontem</span></div>
+      <div class="live-cell"><span class="live-lbl">Investimento</span><span class="live-val" data-conta>R$ 46.000</span><span class="live-sub" style="color:var(--muted)">ritmo de verba em 78%</span></div>
+      <div class="live-cell"><span class="live-lbl">Pedidos</span><span class="live-val" data-conta>312</span><span class="live-sub">▲ 21 na última hora</span></div>
+    </div>`;
+}
+
+// Conta de 0 até o valor exibido, mantendo o formato brasileiro (R$, %, x, casas decimais).
+function animarNumeros(raiz) {
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const alvos = raiz.querySelectorAll('[data-conta], .kpi-val, .mob-hero-val, .wn-roas b');
+  alvos.forEach(el => {
+    const txt = el.textContent.trim();
+    const m = txt.match(/^(\D*?)(\d{1,3}(?:\.\d{3})*|\d+)(?:,(\d+))?(\D*)$/);
+    if (!m) return;
+    const [, pre, inteiro, dec = '', suf] = m;
+    const casas = dec.length;
+    const alvo = parseFloat(inteiro.replace(/\./g, '') + (casas ? '.' + dec : ''));
+    if (!isFinite(alvo) || alvo === 0) return;
+    const fmt = v => pre + v.toLocaleString('pt-BR', { minimumFractionDigits: casas, maximumFractionDigits: casas }) + suf;
+    const dur = 900, t0 = performance.now();
+    const passo = agora => {
+      const p = Math.min(1, (agora - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt(alvo * e);
+      if (p < 1) requestAnimationFrame(passo); else el.textContent = txt;
+    };
+    requestAnimationFrame(passo);
+  });
 }
 
 const ROUTES = {
@@ -764,6 +854,7 @@ function renderRoute() {
   document.getElementById('view').innerHTML = cfg.render();
   document.querySelectorAll('.nav-link').forEach(el => el.classList.toggle('active', el.dataset.route === route));
   if (cfg.init) cfg.init();
+  animarNumeros(document.getElementById('view'));
   toggleSidebar(false);
   window.scrollTo(0,0);
 }
@@ -796,8 +887,9 @@ function viewHome() {
       { r:'subir_criativos', t:'Subir Criativos', d:'Simula o upload em lote de pares 9x16 + 1x1 para o Meta Ads.' },
     ]},
   ];
+  let n = 0;
   const linha = i => `
-    <a class="tool-row" href="#" onclick="event.preventDefault();go('${i.r}')">
+    <a class="tool-row" style="--i:${n++}" href="#" onclick="event.preventDefault();go('${i.r}')">
       <span class="tr-name">${i.t}</span>
       <span class="tr-side"><span class="tr-tag ${i.real?'real':''}">${i.real?'lógica real':'dados de exemplo'}</span><span class="tr-go" aria-hidden="true">→</span></span>
       <span class="tr-desc">${i.d}</span>
@@ -808,6 +900,7 @@ function viewHome() {
       <h2>Ferramentas internas de tráfego pago para e-commerce</h2>
       <p>Réplicas funcionais do conjunto de painéis e ferramentas que uso na operação de mídia paga. Nenhum dado real aparece aqui: números, campanhas e criativos são fictícios. UTM Builder e Nomenclatura rodam com a lógica de geração real; o restante mostra a estrutura e o comportamento com dados de exemplo.</p>
     </div>
+    ${liveStrip()}
     <div class="tool-groups">
       ${grupos.map(g => `
         <section class="tool-group">
