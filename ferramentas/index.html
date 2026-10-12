@@ -208,6 +208,37 @@
   @media (max-width:560px) { .tr-side .tr-tag { display:none; } }
   .eyebrow { font-family:var(--mono); font-size:10.5px; letter-spacing:1.4px; color:var(--muted); text-transform:uppercase; font-weight:500; display:flex; align-items:center; gap:7px; margin-bottom:12px; }
   .eyebrow .dot { width:6px; height:6px; border-radius:50%; background:var(--acc); }
+
+  /* ---------------- Winners de criativos ---------------- */
+  .wn-bar { display:flex; flex-wrap:wrap; gap:10px 18px; align-items:center; justify-content:space-between; margin-bottom:14px; }
+  .wn-filters { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; padding:16px 18px; }
+  .wn-filters label.f-label { margin-bottom:6px; }
+  .wn-win { display:flex; flex-wrap:wrap; gap:6px; grid-column:1 / -1; align-items:center; }
+  .wn-win .f-label { margin:0 8px 0 0; }
+  .wn-kpis { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:10px; margin:14px 0 6px; }
+  @media (max-width:900px) { .wn-kpis { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+  .wn-note { font-size:11px; color:var(--dim); margin-bottom:16px; }
+  .wn-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:14px; }
+  .wn-card { background:var(--s1); border:1px solid var(--border); border-radius:var(--r-lg); overflow:hidden; display:flex; flex-direction:column; min-width:0; }
+  .wn-thumb { position:relative; aspect-ratio:4 / 3; display:grid; place-items:center; background:
+      repeating-linear-gradient(135deg, var(--s2) 0 10px, var(--s3) 10px 11px); border-bottom:1px solid var(--border); }
+  .wn-frame { border:1px solid var(--border); background:var(--s1); display:grid; place-items:center; font-family:var(--mono); font-size:10.5px; color:var(--muted); }
+  .wn-frame.f9x16 { height:78%; aspect-ratio:9 / 16; }
+  .wn-frame.f1x1 { height:64%; aspect-ratio:1 / 1; }
+  .wn-rank { position:absolute; top:10px; left:10px; width:24px; height:24px; border-radius:50%; display:grid; place-items:center; font:600 11px/1 var(--mono); background:var(--s1); border:1px solid var(--border); color:var(--text); }
+  .wn-rank.top { background:var(--acc); border-color:var(--acc); color:var(--on-acc); }
+  .wn-tags { position:absolute; top:10px; right:10px; display:flex; gap:4px; }
+  .wn-tag { font:500 9.5px/1 var(--mono); letter-spacing:.05em; padding:4px 6px; border-radius:4px; background:var(--s1); border:1px solid var(--border); color:var(--muted); text-transform:uppercase; }
+  .wn-body { padding:14px; display:grid; gap:10px; }
+  .wn-name { font-family:var(--mono); font-size:11px; color:var(--muted); word-break:break-all; line-height:1.45; }
+  .wn-prod { font-size:12px; color:var(--dim); }
+  .wn-roas { display:flex; align-items:baseline; justify-content:space-between; gap:8px; }
+  .wn-roas b { font-family:var(--display); font-stretch:88%; font-size:26px; font-weight:700; font-variant-numeric:tabular-nums; }
+  .wn-hist { font-size:11px; color:var(--muted); text-align:right; font-variant-numeric:tabular-nums; }
+  .wn-metrics { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px 10px; border-top:1px solid var(--border-soft); padding-top:10px; }
+  .wn-metrics span { display:block; font:500 9.5px/1.2 var(--mono); letter-spacing:.06em; text-transform:uppercase; color:var(--dim); }
+  .wn-metrics strong { font-size:12.5px; font-weight:600; font-variant-numeric:tabular-nums; }
+  .wn-empty { padding:40px 20px; text-align:center; color:var(--muted); font-size:13px; }
   .toast-wrap { position:fixed; bottom:22px; right:22px; z-index:50; display:flex; flex-direction:column; gap:8px; }
   .toast { background:var(--s2); border:1px solid var(--border); border-radius:10px; padding:11px 15px; font-size:12.5px; color:var(--text); box-shadow:0 8px 24px rgba(0,0,0,.25); animation:toastIn .18s ease-out; max-width:320px; }
   .toast.ok { border-color:color-mix(in srgb, var(--acc) 40%, transparent); }
@@ -281,13 +312,13 @@
     <nav class="navlist" id="navlist">
       <div class="nav-h">Painéis</div>
       <a class="nav-link" data-route="mobile">Dashboard Mobile</a>
+      <a class="nav-link" data-route="winners">Winners de criativos</a>
       <a class="nav-link" data-route="criativos">Criativos (mock)</a>
       <a class="nav-link" data-route="produtos">Produtos</a>
       <a class="nav-link" data-route="tracking">Tracking</a>
       <a class="nav-link" data-route="insights">Insights IA</a>
       <a class="nav-link" data-route="operacional">Operacional</a>
       <div class="nav-h">Ferramentas</div>
-      <a class="nav-link" data-route="promo">Monitor Promoções</a>
       <a class="nav-link" data-route="brief">Daily Brief</a>
       <a class="nav-link" data-route="utm">UTM Builder</a>
       <a class="nav-link" data-route="encurtador">Encurtador</a>
@@ -571,15 +602,152 @@ const MOCK = {
 /* =========================================================================
    VIEWS
    ========================================================================= */
+
+/* ---------------- WINNERS DE CRIATIVOS ---------------- */
+// Dados 100% fictícios, gerados aqui mesmo (semente fixa): produtos genéricos e creators anônimos.
+const WN = (() => {
+  let s = 20261012;
+  const rnd = () => (s = (s * 1664525 + 1013904223) % 4294967296) / 4294967296;
+  const pick = a => a[Math.floor(rnd() * a.length)];
+  const produtos = ['Panelas de ferro', 'Taças', 'Talheres', 'Almofadas', 'Vasos', 'Tábuas', 'Geral'];
+  const creators = ['A', 'B', 'C', 'D', 'E', 'F'];
+  const angulos = ['Detalhes', 'Receita', 'Benefícios', 'Mesa posta', 'Unboxing'];
+  const lista = [];
+  for (let i = 0; i < 46; i++) {
+    const video = rnd() < 0.45;
+    const formato = rnd() < 0.55 ? '9x16' : '1x1';
+    const tipoCreator = rnd() < 0.35 ? 'influencer' : rnd() < 0.5 ? 'embaixador' : null;
+    const produto = pick(produtos);
+    const creator = tipoCreator ? pick(creators) : null;
+    const historico = 2 + rnd() * 9;
+    const roas = Math.max(0.6, historico * (0.45 + rnd() * 1.9));
+    const gasto = 180 + rnd() * 1900;
+    const ticket = 380 + rnd() * 900;
+    const nome = [video ? 'VID' : 'IMG', formato, tipoCreator ? (tipoCreator === 'influencer' ? 'Influencer' : 'Embaixador') + '_Creator' + creator : 'Interno',
+                  produto.replace(/ /g, ''), pick(angulos).replace(/ /g, ''), 'V' + (1 + Math.floor(rnd() * 6))].join('_');
+    lista.push({
+      id: i, nome, video, formato, produto, tipoCreator, storie: rnd() < 0.12, post: rnd() < 0.08,
+      teste: rnd() < 0.62, novo: rnd() < 0.22, historico, roas, gasto, ticket,
+      ctr: 0.012 + rnd() * 0.08, cpc: 0.15 + rnd() * 1.3,
+    });
+  }
+  return { lista, produtos, estado: { escopo:'teste', aba:'vencedores', janela:7, produto:'', creator:'', storie:'', post:'' } };
+})();
+
+const WN_JANELA = { 7:1, 14:1.9, 30:3.9, 90:10.5 };
+
+function wnFiltrados() {
+  const e = WN.estado, f = WN_JANELA[e.janela];
+  return WN.lista
+    .filter(c => e.escopo === 'conta' || c.teste)
+    .filter(c => !e.produto || c.produto === e.produto)
+    .filter(c => !e.creator || (e.creator === 'nenhum' ? !c.tipoCreator : c.tipoCreator === e.creator))
+    .filter(c => !e.storie || (e.storie === 'sim') === c.storie)
+    .filter(c => !e.post || (e.post === 'sim') === c.post)
+    .map(c => {
+      const gasto = c.gasto * f;
+      const receita = gasto * c.roas;
+      const compras = Math.max(1, Math.round(receita / c.ticket));
+      return { ...c, gasto, receita, compras, cpa: gasto / compras };
+    })
+    .filter(c => e.aba === 'novos' ? c.novo
+               : e.aba === 'revisar' ? (c.roas < c.historico * 0.75 || c.roas < 2)
+               : (c.roas >= 4 && c.compras >= 2))
+    .sort((a, b) => b.roas - a.roas);
+}
+
+function wnCard(c, i) {
+  const delta = (c.roas - c.historico) / c.historico;
+  const tagCreator = c.tipoCreator === 'influencer' ? 'influ' : c.tipoCreator === 'embaixador' ? 'emba' : '';
+  return `
+    <article class="wn-card">
+      <div class="wn-thumb">
+        <span class="wn-rank ${i < 3 ? 'top' : ''}">${i + 1}</span>
+        <span class="wn-tags">${tagCreator ? `<span class="wn-tag">${tagCreator}</span>` : ''}${c.storie ? '<span class="wn-tag">story</span>' : ''}<span class="wn-tag">${c.video ? 'vídeo' : 'imagem'}</span></span>
+        <div class="wn-frame f${c.formato}">${c.formato.replace('x', ':')}</div>
+      </div>
+      <div class="wn-body">
+        <div class="wn-name">${esc(c.nome)}</div>
+        <div class="wn-prod">${esc(c.produto)}</div>
+        <div class="wn-roas">
+          <b style="color:${c.roas >= 4 ? 'var(--green)' : c.roas >= 2 ? 'var(--orange)' : 'var(--red)'}">${fmtX(c.roas)}</b>
+          <span class="wn-hist">histórico ${fmtX(c.historico)}<br><span style="color:${delta >= 0 ? 'var(--green)' : 'var(--red)'}">${delta >= 0 ? '▲' : '▼'} ${Math.abs(delta * 100).toFixed(0)}%</span></span>
+        </div>
+        <div class="wn-metrics">
+          <div><span>CTR</span><strong>${fmtPct(c.ctr, 2)}</strong></div>
+          <div><span>CPC</span><strong>${fmtBRL(c.cpc)}</strong></div>
+          <div><span>Compras</span><strong>${fmtNum(c.compras)}</strong></div>
+          <div><span>CPA</span><strong>${fmtBRL0(c.cpa)}</strong></div>
+          <div><span>Gasto</span><strong>${fmtBRL0(c.gasto)}</strong></div>
+          <div><span>Receita</span><strong>${fmtBRL0(c.receita)}</strong></div>
+        </div>
+      </div>
+    </article>`;
+}
+
+function wnConteudo() {
+  const lista = wnFiltrados();
+  const gasto = lista.reduce((s, c) => s + c.gasto, 0), receita = lista.reduce((s, c) => s + c.receita, 0);
+  const compras = lista.reduce((s, c) => s + c.compras, 0);
+  const rotulo = { vencedores: 'vencedores', novos: 'novos', revisar: 'a revisar' }[WN.estado.aba];
+  return `
+    <div class="wn-kpis">
+      <div class="card kpi"><div class="kpi-lbl">Criativos</div><div class="kpi-val">${lista.length}</div></div>
+      <div class="card kpi"><div class="kpi-lbl">Investimento</div><div class="kpi-val">${fmtBRL0(gasto)}</div></div>
+      <div class="card kpi"><div class="kpi-lbl">Compras</div><div class="kpi-val">${fmtNum(compras)}</div></div>
+      <div class="card kpi"><div class="kpi-lbl">Receita</div><div class="kpi-val">${fmtBRL0(receita)}</div></div>
+      <div class="card kpi"><div class="kpi-lbl">ROAS</div><div class="kpi-val" style="color:var(--green)">${fmtX(gasto ? receita / gasto : 0)}</div></div>
+    </div>
+    <div class="wn-note">Números do filtro atual (${rotulo}, últimos ${WN.estado.janela} dias). Dados fictícios.</div>
+    ${lista.length ? `<div class="wn-grid">${lista.map(wnCard).join('')}</div>` : '<div class="card wn-empty">Nenhum criativo neste recorte. Mude a janela ou os filtros.</div>'}`;
+}
+
+function viewWinners() {
+  const e = WN.estado;
+  const seg = (grupo, opcoes, atual) => `<div class="segmented" data-wn="${grupo}">${opcoes.map(([v, l]) => `<button type="button" data-v="${v}" class="${String(atual) === String(v) ? 'on' : ''}">${l}</button>`).join('')}</div>`;
+  const sel = (id, rotulo, opcoes, atual) => `<div><label class="f-label" for="${id}">${rotulo}</label><select class="f-select" id="${id}">${opcoes.map(([v, l]) => `<option value="${v}" ${atual === v ? 'selected' : ''}>${l}</option>`).join('')}</select></div>`;
+  return `
+    <div class="wn-bar">
+      ${seg('escopo', [['teste', 'Criativos em teste'], ['conta', 'Conta toda']], e.escopo)}
+      ${seg('aba', [['vencedores', 'Vencedores'], ['novos', 'Novos (7 dias)'], ['revisar', 'A revisar']], e.aba)}
+    </div>
+    <div class="card wn-filters">
+      <div class="wn-win"><label class="f-label">Janela</label>${[7, 14, 30, 90].map(d => `<button type="button" class="chip ${e.janela === d ? 'on' : ''}" data-wn-janela="${d}">${d} dias</button>`).join('')}</div>
+      ${sel('wn-produto', 'Produto', [['', 'Todos os produtos'], ...WN.produtos.map(p => [p, p])], e.produto)}
+      ${sel('wn-creator', 'Creator', [['', 'Todos'], ['influencer', 'Influencer'], ['embaixador', 'Embaixador'], ['nenhum', 'Sem creator']], e.creator)}
+      ${sel('wn-storie', 'Story', [['', 'Todos'], ['sim', 'Só story'], ['nao', 'Sem story']], e.storie)}
+      ${sel('wn-post', 'Post', [['', 'Todos'], ['sim', 'Só post'], ['nao', 'Sem post']], e.post)}
+    </div>
+    <div id="wn-conteudo">${wnConteudo()}</div>`;
+}
+
+function initWinners() {
+  const raiz = document.getElementById('view');
+  const atualizar = () => { document.getElementById('wn-conteudo').innerHTML = wnConteudo(); };
+  raiz.querySelectorAll('[data-wn]').forEach(grupo => grupo.addEventListener('click', ev => {
+    const b = ev.target.closest('button'); if (!b) return;
+    WN.estado[grupo.dataset.wn] = b.dataset.v;
+    grupo.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+    atualizar();
+  }));
+  raiz.querySelectorAll('[data-wn-janela]').forEach(b => b.addEventListener('click', () => {
+    WN.estado.janela = Number(b.dataset.wnJanela);
+    raiz.querySelectorAll('[data-wn-janela]').forEach(x => x.classList.toggle('on', x === b));
+    atualizar();
+  }));
+  [['wn-produto', 'produto'], ['wn-creator', 'creator'], ['wn-storie', 'storie'], ['wn-post', 'post']].forEach(([id, campo]) =>
+    document.getElementById(id).addEventListener('change', ev => { WN.estado[campo] = ev.target.value; atualizar(); }));
+}
+
 const ROUTES = {
   home: { title:'Visão geral', sub:'Todas as ferramentas da suite, em modo demo', render: viewHome, init: null },
   mobile: { title:'Dashboard Mobile', sub:'Receita, mídia paga e campanhas em tempo real · versão para celular', render: viewMobile, init: initMobile },
+  winners: { title:'Winners de criativos', sub:'Ranking de criativos por ROAS contra o histórico · Meta Ads · dados fictícios', render: viewWinners, init: initWinners },
   criativos: { title:'Criativos (mock)', sub:'Top performers, fadiga e taxonomia · Meta Ads · ontem', render: viewCriativos, init: null },
   produtos: { title:'Produtos', sub:'Margem, ROI por SKU e gasto sem venda · ontem', render: viewProdutos, init: null },
   tracking: { title:'Tracking', sub:'Qualidade da atribuição · cascata UTM > gclid > fbclid > GA4 > landing', render: viewTracking, init: null },
   insights: { title:'Insights IA', sub:'Brief diário do Gemini + ações sugeridas pelos agentes', render: viewInsights, init: initInsights },
   operacional: { title:'Operacional', sub:'Saúde dos pipelines · Apps Scripts, Sheets, n8n', render: viewOperacional, init: initOperacional },
-  promo: { title:'Monitor Promoções', sub:'Criativos ativos com "Promoções" (cupom) ativado no Meta Ads', render: viewPromo, init: null },
   brief: { title:'Daily Brief', sub:'Versão web do brief diário enviado por link todas as manhãs', render: viewBrief, init: null },
   utm: { title:'UTM Builder', sub:'Gerador de URLs com nomenclatura padrão de UTM', render: viewUtm, init: initUtm },
   encurtador: { title:'Encurtador', sub:'Encurtador de links interno · l.demo.app', render: viewEncurtador, init: initEncurtador },
@@ -617,6 +785,7 @@ function viewHome() {
   const grupos = [
     { nome:'Painéis', itens:[
       { r:'mobile', t:'Dashboard Mobile', d:'Receita, mídia paga e campanhas em tempo real.' },
+      { r:'winners', t:'Winners de criativos', d:'Quem está vencendo no Meta Ads: ROAS contra o histórico, por produto e creator.' },
       { r:'criativos', t:'Criativos', d:'Ranking de criativos por ROAS, CTR e fadiga.' },
       { r:'produtos', t:'Produtos', d:'Margem e ROI por SKU, gasto sem venda.' },
       { r:'tracking', t:'Tracking', d:'Qualidade de atribuição e pedidos sem origem.' },
@@ -624,7 +793,6 @@ function viewHome() {
       { r:'operacional', t:'Operacional', d:'Saúde dos pipelines, Sheets e n8n.' },
     ]},
     { nome:'Ferramentas', itens:[
-      { r:'promo', t:'Monitor Promoções', d:'Detecta criativos com cupom ativado.' },
       { r:'brief', t:'Daily Brief', d:'Versão web do resumo diário por e-mail.' },
       { r:'utm', t:'UTM Builder', d:'Gera URLs com UTM no padrão da conta.', real:true },
       { r:'encurtador', t:'Encurtador', d:'Encurta links internos com slug customizável.' },
@@ -1160,37 +1328,6 @@ function initOperacional() {
     opFilter = b.dataset.opf;
     document.getElementById('view').innerHTML = viewOperacional();
   });
-}
-
-/* ---------------- MONITOR PROMOÇÕES ---------------- */
-function viewPromo() {
-  const d = MOCK.promo;
-  const ads = d.ads;
-  return `
-    <div class="grid grid-3">
-      <div class="card kpi" style="text-align:center"><div class="kpi-val" style="font-size:22px;color:var(--muted)">${d.total_active_ads}</div><div class="kpi-sub">ads ativos verificados</div></div>
-      <div class="card kpi" style="text-align:center;${ads.length?'border-color:rgba(255,140,66,.4)':''}"><div class="kpi-val" style="font-size:22px;color:${ads.length?'var(--orange)':'var(--green)'}">${ads.length}</div><div class="kpi-sub">com Promoções ativado</div></div>
-      <div class="card kpi" style="text-align:center"><div class="kpi-val" style="font-size:22px;color:var(--green)">${d.total_active_ads-ads.length}</div><div class="kpi-sub">sem Promoções</div></div>
-    </div>
-    <div class="banner ${ads.length?'banner-warn':'banner-ok'}" style="margin-top:18px">
-      ${ads.length ? `${ads.length} anúncio${ads.length>1?'s':''} com "Promoções" ativado — cupons podem aparecer em criativos não intencionais. Desative no Meta Ads Manager.` : '✓ Nenhum anúncio ativo com "Promoções" habilitado.'}
-    </div>
-    ${ads.length ? `
-      <div class="section-title" style="color:var(--orange)">Anúncios com Promoções ativado (${ads.length})</div>
-      <div class="card table-wrap" style="border-color:rgba(255,140,66,.35)">
-        <table class="dt">
-          <thead><tr><th>Anúncio · Adset · Campanha</th><th>Status</th><th>Ação</th></tr></thead>
-          <tbody>${ads.map(a => `
-            <tr>
-              <td><div style="font-weight:600">${esc(a.ad_name)}</div><div style="font-size:11px;color:var(--muted)">${esc(a.adset_name)}</div><div style="font-size:11px;color:var(--dim)">${esc(a.campaign_name)}</div></td>
-              <td><span class="pill pill-warn">Promoções ativado</span></td>
-              <td><a href="#" onclick="toast('Amostra — nenhuma ação real é executada.','ok');return false" style="color:var(--orange);font-size:11.5px;text-decoration:none">Abrir no Ads Manager ↗</a></td>
-            </tr>
-          `).join('')}</tbody>
-        </table>
-      </div>
-    ` : ''}
-  `;
 }
 
 /* ---------------- DAILY BRIEF ---------------- */
