@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="pt-BR">
 <meta charset="UTF-8">
-<title>AdOps Suite</title>
+<title>Ferramentas de mídia paga</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
   :root {
@@ -14,10 +14,10 @@
     --muted:#a39d91; --dim:#6e695f; --text:#f3eee4;
     --green:#5fbf8f; --acc:#d4b27a; --acc2:#b89b6a;
     --red:#ef6461; --orange:#f08d4f; --yellow:#e2b043;
-    --display:'Archivo','Arial Narrow',system-ui,sans-serif;
-    --body:'Public Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
-    --mono:'JetBrains Mono','SF Mono','Consolas',monospace;
-    --on-acc:#14100a; --r-sm:6px; --r-md:8px; --r-lg:10px;
+    --display:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+    --body:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+    --mono:'IBM Plex Mono','SF Mono','Consolas',monospace;
+    --on-acc:#14100a; --r-sm:4px; --r-md:6px; --r-lg:8px;
   }
   :root[data-theme="light"] {
     --bg:#f7f4ee; --s1:#fffdf9; --s2:#efe9df; --s3:#e6ded1; --border:#dcd2c2; --border-soft:#e8e0d3;
@@ -52,7 +52,7 @@
   .sidebar::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
 
   .brand { padding:22px 20px 18px; border-bottom:1px solid var(--border); display:grid; gap:12px; }
-  .brand-mark { display:flex; align-items:baseline; gap:6px; font-family:var(--display); font-stretch:80%; font-size:24px; line-height:1; letter-spacing:-.01em; }
+  .brand-mark { display:flex; align-items:baseline; gap:6px; font-family:var(--display); font-size:24px; line-height:1; letter-spacing:-.01em; }
   .brand-mark b { font-weight:800; color:var(--text); }
   .brand-mark span { font-weight:500; color:var(--muted); }
   .brand-tag { font-family:var(--mono); font-size:10.5px; letter-spacing:.04em; color:var(--dim); margin-top:-6px; }
@@ -84,7 +84,7 @@
     display:flex; align-items:flex-start; justify-content:space-between; gap:16px;
     position:sticky; top:0; z-index:5; backdrop-filter:blur(6px);
   }
-  .topbar-title { font-family:var(--display); font-stretch:85%; font-size:22px; font-weight:700; color:var(--text); letter-spacing:-.01em; text-wrap:balance; }
+  .topbar-title { font-family:var(--display); font-size:22px; font-weight:700; color:var(--text); letter-spacing:-.01em; text-wrap:balance; }
   .topbar-sub { font-size:12px; color:var(--muted); margin-top:3px; }
   .topbar-right { display:flex; align-items:center; gap:10px; flex-shrink:0; padding-top:2px; }
   .clock { font-size:11px; color:var(--dim); font-family:var(--mono); }
@@ -106,7 +106,7 @@
 
   .kpi { padding:16px 18px; }
   .kpi-lbl { font-size:10px; letter-spacing:.8px; text-transform:uppercase; color:var(--muted); font-weight:700; }
-  .kpi-val { font-family:var(--display); font-stretch:88%; font-size:28px; font-weight:700; font-variant-numeric:tabular-nums; margin-top:7px; font-feature-settings:'tnum'; line-height:1.05; }
+  .kpi-val { font-family:var(--display); font-size:28px; font-weight:700; font-variant-numeric:tabular-nums; margin-top:7px; font-feature-settings:'tnum'; line-height:1.05; }
   .kpi-sub { font-size:11.5px; color:var(--muted); margin-top:4px; font-feature-settings:'tnum'; }
 
   .section-title { font-family:var(--mono); font-size:10.5px; font-weight:500; letter-spacing:1.4px; text-transform:uppercase; color:var(--muted); margin:26px 0 10px; display:flex; align-items:center; gap:10px; }
@@ -184,7 +184,7 @@
 
   .loading { text-align:center; padding:60px 20px; color:var(--muted); font-size:13px; }
   .home-intro { max-width:46rem; display:grid; gap:10px; margin-bottom:30px; }
-  .home-intro h2 { font-family:var(--display); font-stretch:82%; font-size:clamp(26px,3.4vw,34px); font-weight:700; line-height:1.08; letter-spacing:-.01em; margin:0; text-wrap:balance; }
+  .home-intro h2 { font-family:var(--display); font-size:clamp(26px,3.4vw,34px); font-weight:700; line-height:1.08; letter-spacing:-.01em; margin:0; text-wrap:balance; }
   .home-intro p { margin:0; font-size:14px; line-height:1.65; color:var(--muted); }
   .home-intro .note { font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--dim); }
   .tool-groups { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px; align-items:start; }
@@ -230,7 +230,7 @@
   .wn-name { font-family:var(--mono); font-size:11px; color:var(--muted); word-break:break-all; line-height:1.45; }
   .wn-prod { font-size:12px; color:var(--dim); }
   .wn-roas { display:flex; align-items:baseline; justify-content:space-between; gap:8px; }
-  .wn-roas b { font-family:var(--display); font-stretch:88%; font-size:26px; font-weight:700; font-variant-numeric:tabular-nums; }
+  .wn-roas b { font-family:var(--display); font-size:26px; font-weight:700; font-variant-numeric:tabular-nums; }
   .wn-hist { font-size:11px; color:var(--muted); text-align:right; font-variant-numeric:tabular-nums; }
   .wn-metrics { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px 10px; border-top:1px solid var(--border-soft); padding-top:10px; }
   .wn-metrics span { display:block; font:500 9.5px/1.2 var(--mono); letter-spacing:.06em; text-transform:uppercase; color:var(--dim); }
@@ -256,7 +256,7 @@
   .live-cell { background:var(--s1); padding:16px 18px 12px; display:grid; gap:6px; min-width:0; }
   .live-lbl { display:flex; align-items:center; gap:8px; font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
   .live-dot { width:7px; height:7px; border-radius:50%; background:var(--green); animation:pulso 1.8s ease-out infinite; }
-  .live-val { font-family:var(--display); font-stretch:85%; font-size:clamp(24px,2.6vw,32px); font-weight:700; line-height:1; font-variant-numeric:tabular-nums; }
+  .live-val { font-family:var(--display); font-size:clamp(24px,2.6vw,32px); font-weight:700; line-height:1; font-variant-numeric:tabular-nums; }
   .live-sub { font-size:11.5px; color:var(--green); font-variant-numeric:tabular-nums; }
   .live svg { width:100%; height:34px; display:block; overflow:visible; }
   .live svg path.linha { fill:none; stroke:var(--acc); stroke-width:2; stroke-linecap:round; stroke-linejoin:round;
@@ -310,7 +310,7 @@
   .mob-daytabs button { flex:1; border:1px solid #2a2824; background:#141412; color:#a39d91; font-size:11.5px; font-weight:700; padding:8px 0; border-radius:9px; cursor:pointer; }
   .mob-daytabs button.on { background:var(--acc); color:var(--on-acc); border-color:var(--acc); }
   .mob-hero-lbl { font-size:10px; letter-spacing:1px; text-transform:uppercase; color:#a39d91; font-weight:700; }
-  .mob-hero-val { font-family:var(--display); font-stretch:88%; font-size:32px; font-weight:700; color:#fff; font-variant-numeric:tabular-nums; margin-top:4px; font-feature-settings:'tnum'; letter-spacing:-.5px; }
+  .mob-hero-val { font-family:var(--display); font-size:32px; font-weight:700; color:#fff; font-variant-numeric:tabular-nums; margin-top:4px; font-feature-settings:'tnum'; letter-spacing:-.5px; }
   .mob-delta { font-size:11.5px; font-weight:700; margin-top:5px; font-feature-settings:'tnum'; }
   .mob-delta.up { color:var(--green); } .mob-delta.down { color:var(--red); }
   .mob-kpis { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:14px 0; }
@@ -342,6 +342,85 @@
   .menu-btn { display:none; background:var(--s2); border:1px solid var(--border); color:var(--text); border-radius:8px; padding:8px 10px; cursor:pointer; font-size:14px; }
   .backdrop { display:none; position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:35; }
   .backdrop.show { display:block; }
+
+  /* ===== Acabamento de produto (sobrepõe regras anteriores) ===== */
+  body { font-family:var(--body); font-size:14px; letter-spacing:0; }
+  .main { background:none; }
+  .topbar { background:var(--bg); backdrop-filter:none; }
+  .topbar-title { font-family:var(--body); font-size:18px; font-weight:600; letter-spacing:-.005em; }
+  .topbar-sub { font-size:12.5px; }
+  .brand { padding:20px 18px 16px; gap:2px; }
+  .brand-mark { display:block; font-family:var(--body); font-size:15px; font-weight:600; letter-spacing:-.005em; color:var(--text); }
+  .brand-tag { font-family:var(--body); font-size:12px; letter-spacing:0; color:var(--dim); margin:0; }
+  .nav-h, .section-title, .eyebrow, .kpi-lbl, label.f-label, .f-label, table.dt th, .tool-group h3, .wn-metrics span,
+  .mob-hero-lbl, .mob-kpi .lbl, .wn-tag, .tr-tag, .live-lbl, .home-intro .note {
+    font-family:var(--body) !important; text-transform:none !important; letter-spacing:0 !important; font-weight:500 !important;
+  }
+  .nav-h { font-size:12px; color:var(--dim); padding:16px 10px 6px; }
+  .nav-link { gap:10px; font-size:13.5px; color:var(--muted); border-radius:var(--r-sm); }
+  .nav-link .nav-ic { width:16px; height:16px; flex:0 0 16px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; opacity:.8; }
+  .nav-link.active { background:var(--s2); color:var(--text); }
+  .nav-link.active .nav-ic { opacity:1; color:var(--acc); }
+  .nav-link.active::before { display:none; }
+  .section-title { font-size:13px; color:var(--text); margin:28px 0 10px; }
+  .section-title::after { display:none; }
+  .kpi-lbl { font-size:12.5px; color:var(--muted); }
+  .kpi-val { font-family:var(--body); font-size:24px; font-weight:600; letter-spacing:-.01em; }
+  .mob-hero-val { font-family:var(--body); font-weight:600; letter-spacing:-.01em; }
+  table.dt th { font-size:12px; color:var(--muted); background:transparent; }
+  .card, .panel, .table-wrap { border-radius:var(--r-lg); box-shadow:none; }
+  .card.kpi:hover, .wn-card:hover { transform:none !important; box-shadow:none !important; border-color:var(--border) !important; }
+  .view > *, .wn-card, .tool-row { animation:none !important; }
+  .wn-thumb { background:var(--s2); }
+  .wn-frame { background:transparent; border-color:var(--border); }
+  .wn-tag { font-size:11px; padding:3px 6px; }
+  .wn-roas b { font-family:var(--body); font-size:22px; font-weight:600; }
+  .wn-rank.top { background:var(--s1); border-color:var(--acc); color:var(--acc); }
+  .btn-primary, .chip.on, .segmented button.on, .yn-btns button.on-yes, .mob-daytabs button.on { background:var(--text); border-color:var(--text); color:var(--bg); }
+  .chip, .segmented button { font-weight:500; }
+
+  /* Painel inicial */
+  .home-bar { display:flex; justify-content:flex-end; margin-bottom:16px; }
+  .metrics { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); border:1px solid var(--border); border-radius:var(--r-lg); background:var(--s1); margin-bottom:16px; }
+  .metric { display:grid; gap:4px; padding:14px 18px; border-left:1px solid var(--border); min-width:0; }
+  .metric:first-child { border-left:0; }
+  .metric-lbl { font-size:12.5px; color:var(--muted); }
+  .metric-val { font-size:22px; font-weight:600; letter-spacing:-.01em; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .delta { font-size:12px; font-variant-numeric:tabular-nums; }
+  .delta.up { color:var(--green); } .delta.flat { color:var(--muted); } .delta.down { color:var(--red); }
+  @media (max-width:980px) { .metrics { grid-template-columns:repeat(2,minmax(0,1fr)); } .metric { border-left:0; border-top:1px solid var(--border); } .metric:nth-child(-n+2) { border-top:0; } .metric:last-child { grid-column:1 / -1; } }
+  .panel { background:var(--s1); border:1px solid var(--border); margin-bottom:16px; min-width:0; }
+  .panel-head { display:flex; align-items:baseline; justify-content:space-between; gap:12px; padding:14px 18px; border-bottom:1px solid var(--border-soft); flex-wrap:wrap; }
+  .panel-head h2 { font-size:14px; font-weight:600; margin:0; }
+  .panel-meta { font-size:12px; color:var(--dim); }
+  .legend { display:flex; gap:16px; font-size:12px; color:var(--muted); }
+  .legend span { display:flex; align-items:center; gap:6px; }
+  .lg-line { width:14px; height:2px; background:var(--text); display:inline-block; }
+  .lg-bar { width:8px; height:10px; background:var(--acc); opacity:.75; display:inline-block; border-radius:1px; }
+  .chart-wrap { padding:10px 12px 6px; overflow-x:auto; }
+  .chart { width:100%; min-width:520px; height:auto; display:block; }
+  .chart .grid { stroke:var(--border-soft); stroke-width:1; }
+  .chart .ax { fill:var(--dim); font:400 11px var(--body); font-variant-numeric:tabular-nums; }
+  .chart .bar { fill:var(--acc); opacity:.55; }
+  .chart .bar:hover { opacity:.9; }
+  .chart .line { fill:none; stroke:var(--text); stroke-width:1.8; stroke-linejoin:round; stroke-dasharray:1; stroke-dashoffset:0; animation:traco 900ms ease-out both; }
+  .chart .pt { fill:var(--text); }
+  @keyframes traco { from { stroke-dashoffset:1; } to { stroke-dashoffset:0; } }
+  .home-cols { display:grid; grid-template-columns:minmax(0,1.7fr) minmax(0,1fr); gap:16px; align-items:start; }
+  .home-cols .panel { margin-bottom:0; }
+  @media (max-width:980px) { .home-cols { grid-template-columns:1fr; } }
+  .home-cols table.dt td.muted { color:var(--muted); }
+  .st { font-size:12px; display:inline-flex; align-items:center; gap:6px; white-space:nowrap; }
+  .st::before { content:""; width:6px; height:6px; border-radius:50%; background:currentColor; }
+  .st-ok { color:var(--green); } .st-bad { color:var(--red); } .st-neutral { color:var(--muted); }
+  ul.tools { list-style:none; margin:0; padding:4px 0; }
+  ul.tools a { display:grid; gap:2px; padding:10px 18px; text-decoration:none; color:inherit; transition:background .12s; }
+  ul.tools a:hover { background:var(--s2); }
+  ul.tools a:focus-visible { outline:2px solid var(--acc); outline-offset:-2px; }
+  .tl-name { font-size:13.5px; font-weight:500; }
+  .tl-desc { font-size:12.5px; color:var(--muted); }
+  .footnote { font-size:12px; color:var(--dim); margin:20px 0 0; max-width:60rem; }
+  @media (prefers-reduced-motion: reduce) { .chart .line { animation:none; } }
 </style>
 
 <div class="backdrop" id="backdrop" onclick="toggleSidebar(false)"></div>
@@ -349,28 +428,28 @@
 <div class="shell">
   <aside class="sidebar" id="sidebar">
     <div class="brand">
-      <div class="brand-mark"><b>AdOps</b><span>Suite</span></div>
-      <div class="brand-tag">Tráfego pago · e-commerce</div>
-      <div class="sample-note"><strong>Dados fictícios</strong>Estrutura e comportamento reais das ferramentas; números de exemplo.</div>
+      <div class="brand-mark">Antônio Rodrigues</div>
+      <div class="brand-tag">Ferramentas de mídia paga</div>
     </div>
     <nav class="navlist" id="navlist">
+      <a class="nav-link" data-route="home"><svg class="nav-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>Visão geral</a>
       <div class="nav-h">Painéis</div>
-      <a class="nav-link" data-route="mobile">Dashboard Mobile</a>
-      <a class="nav-link" data-route="winners">Winners de criativos</a>
-      <a class="nav-link" data-route="criativos">Criativos (mock)</a>
-      <a class="nav-link" data-route="produtos">Produtos</a>
-      <a class="nav-link" data-route="tracking">Tracking</a>
-      <a class="nav-link" data-route="insights">Insights IA</a>
-      <a class="nav-link" data-route="operacional">Operacional</a>
+      <a class="nav-link" data-route="mobile"><svg class="nav-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg>Dashboard Mobile</a>
+      <a class="nav-link" data-route="winners"><svg class="nav-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg>Winners de criativos</a>
+      <a class="nav-link" data-route="criativos"><svg class="nav-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg>Criativos</a>
+      <a class="nav-link" data-route="produtos"><svg class="nav-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5V8z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg>Produtos</a>
+      <a class="nav-link" data-route="tracking"><svg class="nav-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>Tracking</a>
+      <a class="nav-link" data-route="insights"><svg class="nav-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/></svg>Insights IA</a>
+      <a class="nav-link" data-route="operacional"><svg class="nav-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>Operacional</a>
       <div class="nav-h">Ferramentas</div>
-      <a class="nav-link" data-route="brief">Daily Brief</a>
-      <a class="nav-link" data-route="utm">UTM Builder</a>
-      <a class="nav-link" data-route="encurtador">Encurtador</a>
-      <a class="nav-link" data-route="inbazz">InBazz Stories</a>
-      <a class="nav-link" data-route="nomenclatura">Nomenclatura</a>
-      <a class="nav-link" data-route="subir_criativos">Subir Criativos</a>
-      <div class="nav-h">Sobre</div>
-      <a class="nav-link" data-route="sobre">Sobre esta amostra</a>
+      <a class="nav-link" data-route="brief"><svg class="nav-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5M8 13h8M8 17h5"/></svg>Daily Brief</a>
+      <a class="nav-link" data-route="utm"><svg class="nav-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>UTM Builder</a>
+      <a class="nav-link" data-route="encurtador"><svg class="nav-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h10M10 8l4 4-4 4M18 5v14"/></svg>Encurtador</a>
+      <a class="nav-link" data-route="inbazz"><svg class="nav-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M4 19h16"/></svg>InBazz Stories</a>
+      <a class="nav-link" data-route="nomenclatura"><svg class="nav-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7V5h16v2M12 5v14M9 19h6"/></svg>Nomenclatura</a>
+      <a class="nav-link" data-route="subir_criativos"><svg class="nav-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21V9M7 14l5-5 5 5M4 5h16"/></svg>Subir Criativos</a>
+      <div class="nav-h">Projeto</div>
+      <a class="nav-link" data-route="sobre"><svg class="nav-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg>Sobre esta amostra</a>
     </nav>
     <div class="sidebar-foot">
       <span>v1.0 · amostra</span>
@@ -767,7 +846,7 @@ function viewWinners() {
 
 function initWinners() {
   const raiz = document.getElementById('view');
-  const atualizar = () => { const c = document.getElementById('wn-conteudo'); c.innerHTML = wnConteudo(); animarNumeros(c); };
+  const atualizar = () => { const c = document.getElementById('wn-conteudo'); c.innerHTML = wnConteudo(); };
   raiz.querySelectorAll('[data-wn]').forEach(grupo => grupo.addEventListener('click', ev => {
     const b = ev.target.closest('button'); if (!b) return;
     WN.estado[grupo.dataset.wn] = b.dataset.v;
@@ -829,10 +908,10 @@ function animarNumeros(raiz) {
 }
 
 const ROUTES = {
-  home: { title:'Visão geral', sub:'Todas as ferramentas da suite, em modo demo', render: viewHome, init: null },
+  home: { title:'Visão geral', sub:'Mídia paga · Meta Ads e Google Ads · dados fictícios', render: viewHome, init: initHome },
   mobile: { title:'Dashboard Mobile', sub:'Receita, mídia paga e campanhas em tempo real · versão para celular', render: viewMobile, init: initMobile },
   winners: { title:'Winners de criativos', sub:'Ranking de criativos por ROAS contra o histórico · Meta Ads · dados fictícios', render: viewWinners, init: initWinners },
-  criativos: { title:'Criativos (mock)', sub:'Top performers, fadiga e taxonomia · Meta Ads · ontem', render: viewCriativos, init: null },
+  criativos: { title:'Criativos', sub:'Top performers, fadiga e taxonomia · Meta Ads · ontem', render: viewCriativos, init: null },
   produtos: { title:'Produtos', sub:'Margem, ROI por SKU e gasto sem venda · ontem', render: viewProdutos, init: null },
   tracking: { title:'Tracking', sub:'Qualidade da atribuição · cascata UTM > gclid > fbclid > GA4 > landing', render: viewTracking, init: null },
   insights: { title:'Insights IA', sub:'Brief diário do Gemini + ações sugeridas pelos agentes', render: viewInsights, init: initInsights },
@@ -858,7 +937,6 @@ function renderRoute() {
   document.getElementById('view').innerHTML = cfg.render();
   document.querySelectorAll('.nav-link').forEach(el => el.classList.toggle('active', el.dataset.route === route));
   if (cfg.init) cfg.init();
-  animarNumeros(document.getElementById('view'));
   toggleSidebar(false);
   window.scrollTo(0,0);
 }
@@ -871,48 +949,124 @@ document.getElementById('navlist').addEventListener('click', e => {
 });
 
 /* ---------------- HOME / LAUNCHER ---------------- */
-function viewHome() {
-  const grupos = [
-    { nome:'Painéis', itens:[
-      { r:'mobile', t:'Dashboard Mobile', d:'Receita, mídia paga e campanhas em tempo real.' },
-      { r:'winners', t:'Winners de criativos', d:'Quem está vencendo no Meta Ads: ROAS contra o histórico, por produto e creator.' },
-      { r:'criativos', t:'Criativos', d:'Ranking de criativos por ROAS, CTR e fadiga.' },
-      { r:'produtos', t:'Produtos', d:'Margem e ROI por SKU, gasto sem venda.' },
-      { r:'tracking', t:'Tracking', d:'Qualidade de atribuição e pedidos sem origem.' },
-      { r:'insights', t:'Insights IA', d:'Brief diário e feed de ações dos agentes.' },
-      { r:'operacional', t:'Operacional', d:'Saúde dos pipelines, Sheets e n8n.' },
-    ]},
-    { nome:'Ferramentas', itens:[
-      { r:'brief', t:'Daily Brief', d:'Versão web do resumo diário por e-mail.' },
-      { r:'utm', t:'UTM Builder', d:'Gera URLs com UTM no padrão da conta.', real:true },
-      { r:'encurtador', t:'Encurtador', d:'Encurta links internos com slug customizável.' },
-      { r:'inbazz', t:'InBazz Stories', d:'Baixa stories do Instagram por período.' },
-      { r:'nomenclatura', t:'Nomenclatura', d:'Gera o nome padrão de criativo (9x16 + 1x1).', real:true },
-      { r:'subir_criativos', t:'Subir Criativos', d:'Simula o upload em lote de pares 9x16 + 1x1 para o Meta Ads.' },
-    ]},
+// Série fictícia de 30 dias (semente fixa) para o painel inicial.
+const HOME = (() => {
+  let s = 7031;
+  const rnd = () => (s = (s * 1103515245 + 12345) % 2147483648) / 2147483648;
+  const dias = [];
+  const hoje = new Date(2026, 9, 12);
+  for (let i = 29; i >= 0; i--) {
+    const d = new Date(hoje); d.setDate(hoje.getDate() - i);
+    const fds = d.getDay() === 0 || d.getDay() === 6;
+    const invest = 38000 + rnd() * 14000 + (29 - i) * 260;
+    const roas = 3.4 + rnd() * 1.6 + (fds ? 0.4 : 0);
+    const receita = invest * roas;
+    dias.push({ d, invest, receita, pedidos: Math.round(receita / (560 + rnd() * 120)) });
+  }
+  const campanhas = [
+    ['Prospecção · Panelas de ferro', 'Meta Ads', 0.24, 5.1, 'ativa'],
+    ['Shopping · Linha importada', 'Google Ads', 0.19, 6.4, 'ativa'],
+    ['Remarketing · Catálogo', 'Meta Ads', 0.15, 7.8, 'ativa'],
+    ['Performance Max · Geral', 'Google Ads', 0.16, 4.2, 'em aprendizado'],
+    ['Prospecção · Taças e talheres', 'Meta Ads', 0.14, 2.6, 'revisar'],
+    ['Search · Marca', 'Google Ads', 0.12, 9.3, 'ativa'],
   ];
-  let n = 0;
-  const linha = i => `
-    <a class="tool-row" style="--i:${n++}" href="#" onclick="event.preventDefault();go('${i.r}')">
-      <span class="tr-name">${i.t}</span>
-      <span class="tr-side"><span class="tr-tag ${i.real?'real':''}">${i.real?'lógica real':'dados de exemplo'}</span><span class="tr-go" aria-hidden="true">→</span></span>
-      <span class="tr-desc">${i.d}</span>
-    </a>`;
+  return { dias, campanhas, periodo: 14 };
+})();
+
+function homeResumo(n) {
+  const atual = HOME.dias.slice(-n), ant = HOME.dias.slice(-2 * n, -n);
+  const soma = (l, k) => l.reduce((a, x) => a + x[k], 0);
+  const m = l => { const inv = soma(l, 'invest'), rec = soma(l, 'receita'), ped = soma(l, 'pedidos');
+                   return { inv, rec, ped, roas: rec / inv, ticket: rec / ped }; };
+  return { atual: m(atual), ant: ant.length ? m(ant) : null, serie: atual };
+}
+
+function homeGrafico(serie) {
+  const W = 720, H = 230, L = 56, R = 26, T = 12, B = 26;
+  const max = Math.max(...serie.map(x => x.receita)) * 1.08;
+  const passo = max > 400000 ? 100000 : max > 200000 ? 50000 : 25000;
+  const topo = Math.ceil(max / passo) * passo;
+  const x = i => L + (serie.length === 1 ? 0 : i * (W - L - R) / (serie.length - 1));
+  const y = v => T + (H - T - B) * (1 - v / topo);
+  const bw = Math.max(4, (W - L - R) / serie.length * 0.5);
+  const ticks = []; for (let v = 0; v <= topo; v += passo) ticks.push(v);
+  const k = v => v >= 1000 ? 'R$ ' + (v / 1000).toLocaleString('pt-BR') + ' mil' : 'R$ 0';
+  const linha = serie.map((p, i) => (i ? 'L' : 'M') + x(i).toFixed(1) + ' ' + y(p.receita).toFixed(1)).join(' ');
+  const cada = Math.ceil(serie.length / 7);
   return `
-    <div class="home-intro">
-      <span class="note">Amostra pública · dados fictícios</span>
-      <h2>Ferramentas internas de tráfego pago para e-commerce</h2>
-      <p>Réplicas funcionais do conjunto de painéis e ferramentas que uso na operação de mídia paga. Nenhum dado real aparece aqui: números, campanhas e criativos são fictícios. UTM Builder e Nomenclatura rodam com a lógica de geração real; o restante mostra a estrutura e o comportamento com dados de exemplo.</p>
+    <svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Receita e investimento por dia, dados fictícios">
+      ${ticks.map(v => `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" class="grid"/><text x="${L - 8}" y="${y(v) + 4}" text-anchor="end" class="ax">${k(v)}</text>`).join('')}
+      ${serie.map((p, i) => `<rect x="${(x(i) - bw / 2).toFixed(1)}" y="${y(p.invest).toFixed(1)}" width="${bw.toFixed(1)}" height="${(y(0) - y(p.invest)).toFixed(1)}" class="bar"><title>${p.d.toLocaleDateString('pt-BR')} · investimento ${fmtBRL0(p.invest)}</title></rect>`).join('')}
+      <path d="${linha}" class="line" pathLength="1"/>
+      ${serie.map((p, i) => `<circle cx="${x(i).toFixed(1)}" cy="${y(p.receita).toFixed(1)}" r="${i === serie.length - 1 ? 3.5 : 0}" class="pt"><title>${p.d.toLocaleDateString('pt-BR')} · receita ${fmtBRL0(p.receita)}</title></circle>`).join('')}
+      ${serie.map((p, i) => (i % cada === 0 || i === serie.length - 1) ? `<text x="${x(i).toFixed(1)}" y="${H - 6}" text-anchor="${i === serie.length - 1 ? 'end' : i === 0 ? 'start' : 'middle'}" class="ax">${p.d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })}</text>` : '').join('')}
+    </svg>`;
+}
+
+function homeConteudo() {
+  const { atual: a, ant: p, serie } = homeResumo(HOME.periodo);
+  const delta = (v, w, neutro = false) => {
+    if (!w) return '';
+    const d = (v - w) / w, bom = d >= 0;
+    return `<span class="delta ${neutro ? 'flat' : bom ? 'up' : 'down'}">${d >= 0 ? '▲' : '▼'} ${Math.abs(d * 100).toFixed(1).replace('.', ',')}%</span>`;
+  };
+  const met = (rotulo, valor, d) => `<div class="metric"><span class="metric-lbl">${rotulo}</span><span class="metric-val">${valor}</span>${d}</div>`;
+  const status = s => s === 'ativa' ? '<span class="st st-ok">Ativa</span>' : s === 'revisar' ? '<span class="st st-bad">Revisar</span>' : '<span class="st st-neutral">Em aprendizado</span>';
+  const totInv = a.inv;
+  return `
+    <div class="metrics">
+      ${met('Receita', fmtBRL0(a.rec), delta(a.rec, p && p.rec))}
+      ${met('Investimento', fmtBRL0(a.inv), delta(a.inv, p && p.inv, true))}
+      ${met('ROAS', fmtX(a.roas), delta(a.roas, p && p.roas))}
+      ${met('Pedidos', fmtNum(a.ped), delta(a.ped, p && p.ped))}
+      ${met('Ticket médio', fmtBRL0(a.ticket), delta(a.ticket, p && p.ticket))}
     </div>
-    ${liveStrip()}
-    <div class="tool-groups">
-      ${grupos.map(g => `
-        <section class="tool-group">
-          <h3><span>${g.nome}</span><span>${String(g.itens.length).padStart(2,'0')}</span></h3>
-          <div class="tool-list">${g.itens.map(linha).join('')}</div>
-        </section>`).join('')}
+    <section class="panel">
+      <header class="panel-head">
+        <h2>Receita e investimento</h2>
+        <div class="legend"><span><i class="lg-line"></i>Receita</span><span><i class="lg-bar"></i>Investimento</span></div>
+      </header>
+      <div class="chart-wrap">${homeGrafico(serie)}</div>
+    </section>
+    <div class="home-cols">
+      <section class="panel">
+        <header class="panel-head"><h2>Campanhas</h2><span class="panel-meta">${HOME.periodo} dias · por investimento</span></header>
+        <div class="table-wrap"><table class="dt">
+          <thead><tr><th>Campanha</th><th>Canal</th><th class="tr">Investimento</th><th class="tr">ROAS</th><th>Status</th></tr></thead>
+          <tbody>${HOME.campanhas.map(([n, c, share, r, s]) => `<tr><td>${n}</td><td class="muted">${c}</td><td class="tr">${fmtBRL0(totInv * share)}</td><td class="tr">${fmtX(r)}</td><td>${status(s)}</td></tr>`).join('')}</tbody>
+        </table></div>
+      </section>
+      <section class="panel">
+        <header class="panel-head"><h2>Ferramentas</h2></header>
+        <ul class="tools">
+          ${[['winners', 'Winners de criativos', 'Ranking por ROAS contra o histórico'],
+             ['mobile', 'Dashboard mobile', 'O dia em tempo real, no celular'],
+             ['utm', 'UTM Builder', 'Links no padrão de atribuição da conta'],
+             ['nomenclatura', 'Nomenclatura', 'Nome padrão para criativos 9x16 e 1x1'],
+             ['brief', 'Daily Brief', 'Resumo da manhã com alertas e ações']]
+            .map(([r, n, d]) => `<li><a href="#${r}" onclick="event.preventDefault();go('${r}')"><span class="tl-name">${n}</span><span class="tl-desc">${d}</span></a></li>`).join('')}
+        </ul>
+      </section>
     </div>
-  `;
+    <p class="footnote">Demonstração com dados fictícios das ferramentas internas que construí para a operação de mídia paga. UTM Builder e Nomenclatura usam a lógica real.</p>`;
+}
+
+function viewHome() {
+  return `
+    <div class="home-bar">
+      <div class="segmented" id="home-periodo">${[7, 14, 30].map(n => `<button type="button" data-n="${n}" class="${HOME.periodo === n ? 'on' : ''}">${n} dias</button>`).join('')}</div>
+    </div>
+    <div id="home-conteudo">${homeConteudo()}</div>`;
+}
+
+function initHome() {
+  document.getElementById('home-periodo').addEventListener('click', ev => {
+    const b = ev.target.closest('button'); if (!b) return;
+    HOME.periodo = Number(b.dataset.n);
+    document.querySelectorAll('#home-periodo button').forEach(x => x.classList.toggle('on', x === b));
+    document.getElementById('home-conteudo').innerHTML = homeConteudo();
+  });
 }
 
 function viewSobre() {
