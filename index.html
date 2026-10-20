@@ -104,6 +104,13 @@ h3 { font-size: 1.35rem; font-weight: 700; font-stretch: 90%; }
 .code .k { color: var(--muted); }
 .code .v { color: var(--accent); }
 
+/* Tecnologias */
+.techs { margin: 0; border-top: 1px solid var(--line); }
+.tech { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: 6px 24px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.tech dt { font: 500 .76rem/1.7 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.tech dd { margin: 0; }
+.tech dd span + span::before { content: " · "; color: var(--muted); }
+
 /* Trajetória */
 .timeline { display: grid; gap: 0; border-left: 2px solid var(--line); margin-left: 6px; }
 .step { position: relative; padding: 0 0 22px 24px; display: grid; gap: 2px; }
@@ -118,6 +125,7 @@ footer { display: grid; gap: 8px; border-top: 1px solid var(--line); padding-top
 @media (max-width: 760px) {
   .wrap { padding-block: 36px 56px; gap: 48px; }
   .tool { grid-template-columns: 1fr; padding: 20px; gap: 20px; }
+  .tech { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: no-preference) {
   .chip.on { transition: background .2s; }
@@ -235,7 +243,36 @@ footer { display: grid; gap: 8px; border-top: 1px solid var(--line); padding-top
         </div>
       </article>
     </div>
-    <p class="why">Também construí um cofre de senhas da equipe com criptografia no navegador, um encurtador de links próprio e uma ferramenta de exportação de base para ações de CRM.</p>
+    <div class="tool-text">
+      <p class="why">Também construí um cofre de senhas da equipe com criptografia no navegador, um encurtador de links próprio e uma ferramenta de exportação de base para ações de CRM.</p>
+      <div class="stack"><span>Cloudflare Workers</span><span>AES-256-GCM</span><span>X25519</span><span>Argon2id</span></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="tecnologias">
+    <div class="section-head">
+      <div class="eyebrow">Tecnologias</div>
+      <h2 id="tecnologias">Com o que eu trabalho</h2>
+      <p>Plataformas de mídia e de CRM do dia a dia e o que uso para construir as ferramentas acima.</p>
+    </div>
+    <dl class="techs">
+      <div class="tech">
+        <dt>Mídia paga</dt>
+        <dd><span>Meta Ads</span><span>Google Ads (Search, Shopping e Performance Max)</span><span>TikTok Ads</span><span>LinkedIn Ads</span></dd>
+      </div>
+      <div class="tech">
+        <dt>CRM e dados</dt>
+        <dd><span>Insider</span><span>Zoppy</span><span>GA4</span><span>atribuição por UTM</span><span>cohort de retenção</span><span>Power BI</span><span>Excel</span><span>Google Sheets</span></dd>
+      </div>
+      <div class="tech">
+        <dt>Ferramentas que construo</dt>
+        <dd><span>Next.js</span><span>TypeScript</span><span>Tailwind</span><span>Vercel</span><span>Google Apps Script</span><span>Google Ads Scripts</span><span>Cloudflare Workers</span><span>Gemini 2.5 Pro</span></dd>
+      </div>
+      <div class="tech">
+        <dt>E-commerce</dt>
+        <dd><span>Shopify</span><span>Baselinker</span><span>marketplaces</span><span>iGlu POS</span><span>Greatpages</span><span>Hotmart</span></dd>
+      </div>
+    </dl>
   </section>
 
   <section aria-labelledby="trajetoria">
